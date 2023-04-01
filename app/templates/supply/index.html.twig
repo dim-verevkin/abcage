@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Поставки{% endblock %}
+
+{% block body %}
+<style>
+ 
+</style>
+
+<div class="container m-5">
+
+    <form method="post" action="/supply/add">
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="number" class="form-label">Номер</label>
+                <input type="text" class="form-control" name="number" required="required">
+            </div>
+            <div class="col-sm-5">
+                <label for="name" class="form-label">Название</label>
+                <input type="text" class="form-control" name="name" required="required">
+            </div>
+            <div class="col-sm-1">
+                <label for="quantity" class="form-label">Количество</label>
+                <input type="number" class="form-control" name="quantity" min="1" required="required">
+            </div>
+            <div class="col-sm-1">
+                <label for="amount" class="form-label">Стоимость</label>
+                <input type="text" class="form-control" name="amount" pattern = "\d+(\.\d{2})?" required="required">
+            </div>
+            <div class="col-sm-2">
+                <label for="date" class="form-label">Дата</label>
+                <input type="date" class="form-control" name="date" required="required">
+            </div>
+            <div class="col-sm-1">
+                <label for="button" class="form-label">&nbsp;</label>
+                <button type="submit" class="btn btn-primary" name="button">Добавить</button>
+            </div>
+        </div>
+    </form>
+
+    <br /><br />
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Номер</th>
+                <th scope="col">Название</th>
+                <th scope="col">Количество</th>
+                <th scope="col">Стоимость</th>
+                <th scope="col">Дата</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in supply %}
+                <tr>
+                    <td>{{ item.number }}</td>
+                    <td>{{ item.product }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.amount }}</td>
+                    <td>{{ item.date | date("d.m.Y") }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+   
+</div>
+{% endblock %}
