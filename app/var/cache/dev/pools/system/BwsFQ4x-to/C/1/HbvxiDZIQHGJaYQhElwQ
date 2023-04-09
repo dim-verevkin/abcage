@@ -5,7 +5,6 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
         clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Table'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Table')),
         clone ($p['Doctrine\\ORM\\Mapping\\UniqueConstraint'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\UniqueConstraint')),
         clone ($p['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
-        clone $p['Doctrine\\ORM\\Mapping\\Entity'],
     ],
     null,
     [
@@ -24,15 +23,11 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
                     'id',
                 ],
             ],
-            'repositoryClass' => [
-                3 => 'App\\Repository\\ProductRepository',
-            ],
         ],
     ],
     [
         $o[0],
         $o[2],
-        $o[3],
     ],
     []
 ); }];

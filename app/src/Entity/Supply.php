@@ -10,7 +10,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="supply", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})}, indexes={@ORM\Index(name="id_product_idx", columns={"product"})})
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\SupplyRepository")
  */
 class Supply
 {

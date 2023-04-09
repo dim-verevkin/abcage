@@ -28,20 +28,20 @@ class SupplyService
         $arr = [];
         parse_str($data, $arr);
          
-        $s = new Supply();
-        $s->setNumber($arr['number']);
-        $s->setQuantity($arr['quantity']);
-        $s->setAmount($arr['amount']);
-        $s->setDate(new \DateTime(date("Y-m-d h:i:sa", strtotime($arr['date']))));
-        $s->setProduct($this->psr->addByName($arr['name']));
+        $supply = new Supply();
+        $supply->setNumber($arr['number']);
+        $supply->setQuantity($arr['quantity']);
+        $supply->setAmount($arr['amount']);
+        $supply->setDate(new \DateTime(date("Y-m-d h:i:sa", strtotime($arr['date']))));
+        $supply->setProduct($this->psr->addByName($arr['name']));
      
-        $this->srp->save($s, true);
+        $this->srp->save($supply, true);
 
-        $g = new Stock();
-        $g->setProduct($s->getProduct());
-        $g->setQuantity($s->getQuantity());
-        $g->setCost($s->getAmount() / $s->getQuantity());
+        $stock = new Stock();
+        $stock->setProduct($supply->getProduct());
+        $stock->setQuantity($supply->getQuantity());
+        $stock->setCost($supply->getAmount() / $supply->getQuantity());
 
-        $this->ssr->UpdateStock($g);
+        $this->ssr->UpdateStock($stock);
     }
 }

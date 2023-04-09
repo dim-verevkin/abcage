@@ -336,6 +336,13 @@
     <service id="App\Entity" class="App\Entity" abstract="true">
       <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
     </service>
+    <service id="App\Controller\OrderController" class="App\Controller\OrderController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CshazM0.App\Controller\OrderController"/>
+      </call>
+    </service>
     <service id="App\Controller\StockController" class="App\Controller\StockController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -357,6 +364,10 @@
         <argument type="service" id=".service_locator.CshazM0.App\Controller\SupplyController"/>
       </call>
     </service>
+    <service id="App\Repository\NewOrderRepository" class="App\Repository\NewOrderRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
     <service id="App\Repository\ProductRepository" class="App\Repository\ProductRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
@@ -368,6 +379,10 @@
     <service id="App\Repository\SupplyRepository" class="App\Repository\SupplyRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Service\NewOrderService" class="App\Service\NewOrderService" autowire="true" autoconfigure="true">
+      <argument type="service" id="App\Repository\NewOrderRepository"/>
+      <argument type="service" id="App\Repository\StockRepository"/>
     </service>
     <service id="App\Service\ProductService" class="App\Service\ProductService" autowire="true" autoconfigure="true">
       <argument type="service" id="App\Repository\ProductRepository"/>
@@ -4199,7 +4214,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.oJjm1gs"/>
+      <argument type="service" id=".service_locator..0n.RnT"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -6096,6 +6111,9 @@
     <service id="framework_extra_bundle.argument_name_convertor" class="Sensio\Bundle\FrameworkExtraBundle\Request\ArgumentNameConverter">
       <argument type="service" id="argument_metadata_factory"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StockController" class="App\Controller\StockController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StockController" class="App\Controller\StockController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\StockController" class="App\Controller\StockController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -6105,6 +6123,8 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SupplyController" class="App\Controller\SupplyController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SupplyController" class="App\Controller\SupplyController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\SupplyController" class="App\Controller\SupplyController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\NewOrderRepository" class="App\Repository\NewOrderRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\NewOrderRepository" class="App\Repository\NewOrderRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ProductRepository" class="App\Repository\ProductRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ProductRepository" class="App\Repository\ProductRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\StockRepository" class="App\Repository\StockRepository" autowire="true" abstract="true"/>
@@ -6454,6 +6474,13 @@
         <argument key="stockRepository" type="service_closure" id="App\Repository\StockRepository"/>
       </argument>
     </service>
+    <service id=".service_locator.gKhxn19" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="orderService" type="service_closure" id="App\Service\NewOrderService"/>
+        <argument key="serializer" type="service_closure" id="debug.serializer"/>
+      </argument>
+    </service>
     <service id=".service_locator.IQL3rOg" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6466,9 +6493,11 @@
         <argument key="supplyRepository" type="service_closure" id="App\Repository\SupplyRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.uOPHNqd" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.57AWLK4" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\OrderController::orderAction" type="service_closure" id=".service_locator.FCwuPz2"/>
+        <argument key="App\Controller\OrderController::orderAddAction" type="service_closure" id=".service_locator.gKhxn19"/>
         <argument key="App\Controller\StockController::stockAction" type="service_closure" id=".service_locator.FCwuPz2"/>
         <argument key="App\Controller\SupplyAddController::supplyAddAction" type="service_closure" id=".service_locator.IQL3rOg"/>
         <argument key="App\Controller\SupplyController::supplyAction" type="service_closure" id=".service_locator.61kLFqt"/>
@@ -6476,6 +6505,8 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\OrderController:orderAction" type="service_closure" id=".service_locator.FCwuPz2"/>
+        <argument key="App\Controller\OrderController:orderAddAction" type="service_closure" id=".service_locator.gKhxn19"/>
         <argument key="App\Controller\StockController:stockAction" type="service_closure" id=".service_locator.FCwuPz2"/>
         <argument key="App\Controller\SupplyAddController:supplyAddAction" type="service_closure" id=".service_locator.IQL3rOg"/>
         <argument key="App\Controller\SupplyController:supplyAction" type="service_closure" id=".service_locator.61kLFqt"/>
@@ -6749,9 +6780,10 @@
         <argument key="doctrine.orm.messenger.doctrine_schema_subscriber" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_subscriber"/>
       </argument>
     </service>
-    <service id=".service_locator.oJjm1gs" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator..0n.RnT" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\NewOrderRepository" type="service_closure" id="App\Repository\NewOrderRepository"/>
         <argument key="App\Repository\ProductRepository" type="service_closure" id="App\Repository\ProductRepository"/>
         <argument key="App\Repository\StockRepository" type="service_closure" id="App\Repository\StockRepository"/>
         <argument key="App\Repository\SupplyRepository" type="service_closure" id="App\Repository\SupplyRepository"/>
@@ -7018,6 +7050,12 @@
         <argument key="serializer" type="service_closure" id="debug.serializer" on-invalid="ignore"/>
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
       </argument>
+    </service>
+    <service id=".service_locator.CshazM0.App\Controller\OrderController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\OrderController"/>
+      <argument>App\Controller\OrderController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CshazM0" method="withContext"/>
     </service>
     <service id=".service_locator.CshazM0.App\Controller\StockController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\StockController"/>
@@ -7314,12 +7352,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.uOPHNqd"/>
+      <argument type="service" id=".service_locator.57AWLK4"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.uOPHNqd"/>
+      <argument type="service" id=".service_locator.57AWLK4"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8283,7 +8321,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.uOPHNqd"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.57AWLK4"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8304,7 +8342,7 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
-    <service id=".service_locator.ncc2nAD" alias=".service_locator.uOPHNqd"/>
+    <service id=".service_locator.SkdBV2S" alias=".service_locator.57AWLK4"/>
     <service id=".service_locator.9XMoc9I" alias=".service_locator.kzegaci"/>
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>
@@ -8356,6 +8394,7 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
     <service id=".service_locator.zvtpD1S" alias=".service_locator.FCwuPz2"/>
+    <service id=".service_locator.HCIC7ht" alias=".service_locator.gKhxn19"/>
     <service id=".service_locator.OML.IHg" alias=".service_locator.IQL3rOg"/>
     <service id=".service_locator.1DslRfB" alias=".service_locator.61kLFqt"/>
     <service id=".service_locator.Kyflpr1" alias=".service_locator.CshazM0"/>

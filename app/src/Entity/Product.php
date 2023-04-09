@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="product", uniqueConstraints={@ORM\UniqueConstraint(name="id_UNIQUE", columns={"id"})})
  * @ORM\Entity
- * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
 class Product
 {

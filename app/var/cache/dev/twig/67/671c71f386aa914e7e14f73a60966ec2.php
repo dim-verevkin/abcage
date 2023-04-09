@@ -72,7 +72,7 @@ class __TwigTemplate_e81cff2a485b4e67e119ce164375c31d extends Template
                 <a class=\"nav-link\" href=\"/stock\">Склад</a>
             </li>
             <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"#\">Заявки</a>
+                <a class=\"nav-link\" href=\"/order\">Заявки</a>
             </li>
             <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"#\">Отгрузки</a>
@@ -88,7 +88,7 @@ class __TwigTemplate_e81cff2a485b4e67e119ce164375c31d extends Template
         ";
         // line 36
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 40
+        // line 42
         echo "    </body>
 </html>";
         
@@ -170,7 +170,10 @@ class __TwigTemplate_e81cff2a485b4e67e119ce164375c31d extends Template
 
         // line 37
         echo "            <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>
-            <script src= \"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js\"></script>
+";
+        // line 39
+        echo "            <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js\"></script>
+            <script src=\"/js/main.js\"></script>
         ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -187,7 +190,7 @@ class __TwigTemplate_e81cff2a485b4e67e119ce164375c31d extends Template
 
     public function getDebugInfo()
     {
-        return array (  172 => 37,  162 => 36,  144 => 34,  125 => 12,  113 => 8,  103 => 7,  92 => 40,  90 => 36,  85 => 34,  60 => 12,  57 => 11,  55 => 7,  47 => 1,);
+        return array (  175 => 39,  172 => 37,  162 => 36,  144 => 34,  125 => 12,  113 => 8,  103 => 7,  92 => 42,  90 => 36,  85 => 34,  60 => 12,  57 => 11,  55 => 7,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -217,7 +220,7 @@ class __TwigTemplate_e81cff2a485b4e67e119ce164375c31d extends Template
                 <a class=\"nav-link\" href=\"/stock\">Склад</a>
             </li>
             <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"#\">Заявки</a>
+                <a class=\"nav-link\" href=\"/order\">Заявки</a>
             </li>
             <li class=\"nav-item\">
                 <a class=\"nav-link\" href=\"#\">Отгрузки</a>
@@ -229,7 +232,9 @@ class __TwigTemplate_e81cff2a485b4e67e119ce164375c31d extends Template
     
         {% block javascripts %}
             <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js\"></script>
-            <script src= \"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js\"></script>
+{#            <script src= \"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js\"></script> #}
+            <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js\"></script>
+            <script src=\"/js/main.js\"></script>
         {% endblock %}
     </body>
 </html>", "base.html.twig", "/var/www/templates/base.html.twig");

@@ -15,7 +15,6 @@ class SupplyController extends AbstractController
     {
         $supply = [];
         $supply = $supplyRepository->findAll();
-        //dd($supply);
 
         return $this->render('supply/index.html.twig', [
             'supply'=>$supply,

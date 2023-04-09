@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Заявки{% endblock %}
+
+{% block body %}
+<style>
+ 
+</style>
+
+<div class="container m-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Название</th>
+                    <th scope="col">Остаток</th>
+                    <th scope="col">Добавить в заказ</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in stock %}
+                    <tr>
+                        <td>{{ item.product }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>
+                            <div class="input-group">
+                                <input type="number" class="form-control" placeholder="Количество" min="1">
+                                <button class="btn btn-success fn_add" type="submit" data-path="/order/{{ item.id }}">Добавить</button> 
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-6">
+        <div class="row">
+        <div class="col-sm-6">
+      
+        </div>
+        </div>
+   </div>
+</div>
+{% endblock %}
