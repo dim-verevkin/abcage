@@ -75,7 +75,7 @@ class __TwigTemplate_e81cff2a485b4e67e119ce164375c31d extends Template
                 <a class=\"nav-link\" href=\"/order\">Заявки</a>
             </li>
             <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"#\">Отгрузки</a>
+                <a class=\"nav-link\" href=\"/shipment\">Отгрузки</a>
             </li>
             </ul>
         </div>
@@ -223,7 +223,7 @@ class __TwigTemplate_e81cff2a485b4e67e119ce164375c31d extends Template
                 <a class=\"nav-link\" href=\"/order\">Заявки</a>
             </li>
             <li class=\"nav-item\">
-                <a class=\"nav-link\" href=\"#\">Отгрузки</a>
+                <a class=\"nav-link\" href=\"/shipment\">Отгрузки</a>
             </li>
             </ul>
         </div>

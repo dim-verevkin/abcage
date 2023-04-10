@@ -166,6 +166,8 @@ class __TwigTemplate_c9552ed010437f6c8978c93864dddf41 extends Template
         </div>
    </div>
 </div>
+
+
 ";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
@@ -256,6 +258,8 @@ class __TwigTemplate_c9552ed010437f6c8978c93864dddf41 extends Template
         </div>
    </div>
 </div>
+
+
 {% endblock %}", "neworder/index.html.twig", "/var/www/templates/neworder/index.html.twig");
     }
 }

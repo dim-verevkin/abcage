@@ -57,12 +57,18 @@ class NewOrderService
     public function placeOrder(?string $uuid)
     {
         $order = $this->orp->findOneBy(['orderuuid' => $uuid, 'status' => false,]);
+        $stock = NULL;
         if ($order != NULL)
         {
             do {
+                $stock = $this->srp->findOneBy(['product' => $order->getProduct(), 'cost' => $order->getCost(),]);
+                $stock->setQuantity($stock->getQuantity() - $order->getQuantity());
+                $this->srp->save($stock, true);     
+
                 $order->setStatus(true);
                 $this->orp->save($order, true);     
                 $order = $this->orp->findOneBy(['orderuuid' => $uuid, 'status' => false,]);
+                
               } while ($order != NULL);
         }
     }

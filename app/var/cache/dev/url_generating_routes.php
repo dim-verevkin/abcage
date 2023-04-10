@@ -20,6 +20,7 @@ return [
     'app_order_place' => [[], ['_controller' => 'App\\Controller\\OrderController::orderActionPlace'], [], [['text', '/order/place']], [], [], []],
     'app_order_cancel' => [[], ['_controller' => 'App\\Controller\\OrderController::orderActionCancel'], [], [['text', '/order/cancel']], [], [], []],
     'app_order_add' => [['id'], ['_controller' => 'App\\Controller\\OrderController::orderAddAction'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/order']], [], [], []],
+    'app_shipment' => [[], ['_controller' => 'App\\Controller\\ShipmentController::index'], [], [['text', '/shipment']], [], [], []],
     'app_stock' => [[], ['_controller' => 'App\\Controller\\StockController::stockAction'], [], [['text', '/stock']], [], [], []],
     'app_supply_add' => [[], ['_controller' => 'App\\Controller\\SupplyAddController::supplyAddAction'], [], [['text', '/supply/add']], [], [], []],
     'app_supply' => [[], ['_controller' => 'App\\Controller\\SupplyController::supplyAction'], [], [['text', '/supply']], [], [], []],

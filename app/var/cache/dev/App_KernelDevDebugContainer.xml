@@ -350,6 +350,13 @@
         <argument type="service" id=".service_locator.CshazM0.App\Controller\OrderController"/>
       </call>
     </service>
+    <service id="App\Controller\ShipmentController" class="App\Controller\ShipmentController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CshazM0.App\Controller\ShipmentController"/>
+      </call>
+    </service>
     <service id="App\Controller\StockController" class="App\Controller\StockController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -6140,6 +6147,9 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\OrderController" class="App\Controller\OrderController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ShipmentController" class="App\Controller\ShipmentController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ShipmentController" class="App\Controller\ShipmentController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\ShipmentController" class="App\Controller\ShipmentController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StockController" class="App\Controller\StockController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StockController" class="App\Controller\StockController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\StockController" class="App\Controller\StockController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -7095,6 +7105,12 @@
     <service id=".service_locator.CshazM0.App\Controller\OrderController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\OrderController"/>
       <argument>App\Controller\OrderController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CshazM0" method="withContext"/>
+    </service>
+    <service id=".service_locator.CshazM0.App\Controller\ShipmentController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\ShipmentController"/>
+      <argument>App\Controller\ShipmentController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.CshazM0" method="withContext"/>
     </service>

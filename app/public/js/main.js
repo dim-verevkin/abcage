@@ -37,8 +37,8 @@ $(document).ready(function(){
             
             success: function(data, status) {  
                 console.log(data);
-                $('table#order_data tbody').html("");
-                $('#orderplace').hide();
+                alert("Заказ отменён!");
+                location.replace("/order")
             },  
             error : function(xhr, textStatus, errorThrown) {  
                 console.log(textStatus);
@@ -59,8 +59,8 @@ $(document).ready(function(){
             
             success: function(data, status) {  
                 console.log(data);
-                $('table#order_data tbody').html("");
-                $('#orderplace').hide();
+                alert("Заказ размещён!");
+                location.replace("/shipment")
             },  
             error : function(xhr, textStatus, errorThrown) {  
                 console.log(textStatus);
