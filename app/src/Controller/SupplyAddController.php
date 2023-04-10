@@ -18,9 +18,5 @@ class SupplyAddController extends AbstractController
     {
         $supplyService->addNewSupply($request);
         return $this->redirectToRoute('app_supply');
-
-        return $this->render('supply_add/index.html.twig', [
-            'controller_name' => 'SupplyAddController',
-        ]);
     }
 }

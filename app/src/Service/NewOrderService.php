@@ -18,9 +18,8 @@ class NewOrderService
         $this->srp = $stockRep;
     }
 
-    public function updateOrder(?int $need, ?int $id)
+    public function updateOrder(?int $need, ?string $uuid, ?int $id)
     {
-
         $stock = $this->srp->findOneBy(['id' => $id]);
         if ($stock != NULL)
         {
@@ -31,17 +30,40 @@ class NewOrderService
                 $order->setQuantity($need);
                 $order->setCost($stock->getCost());
                 $order->setAmount($stock->getCost() * $need);
+                $order->setOrderuuid($uuid);
+                $order->setStatus(false);
                 
                 $this->orp->save($order, true);     
 
-                return $order;
+                return $this->orp->findBy(['orderuuid' => $uuid]);
             } 
             else
-                return NULL;
-            
+                return NULL;   
         }
-           // $product = new Product();
-           // $product->setName($name);
-           // $this->rp->save($product, true);
+    }
+
+    public function removeOrder(?string $uuid)
+    {
+        $order = $this->orp->findOneBy(['orderuuid' => $uuid]);
+        if ($order != NULL)
+        {
+            do {
+                $this->orp->remove($order, true);     
+                $order = $this->orp->findOneBy(['orderuuid' => $uuid]);
+              } while ($order != NULL);
+        }
+    }
+
+    public function placeOrder(?string $uuid)
+    {
+        $order = $this->orp->findOneBy(['orderuuid' => $uuid, 'status' => false,]);
+        if ($order != NULL)
+        {
+            do {
+                $order->setStatus(true);
+                $this->orp->save($order, true);     
+                $order = $this->orp->findOneBy(['orderuuid' => $uuid, 'status' => false,]);
+              } while ($order != NULL);
+        }
     }
 }

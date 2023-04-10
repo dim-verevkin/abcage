@@ -50,6 +50,20 @@ class NewOrder
      */
     private $amount;
 
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="orderuuid", type="string", length=36, nullable=true)
+     */
+    private $orderuuid;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="status", type="boolean", nullable=false)
+     */
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -99,6 +113,30 @@ class NewOrder
     public function setAmount(?float $amount): self
     {
         $this->amount = $amount;
+
+        return $this;
+    }
+
+    public function getOrderuuid(): ?string
+    {
+        return $this->orderuuid;
+    }
+
+    public function setOrderuuid(?string $orderuuid): self
+    {
+        $this->orderuuid = $orderuuid;
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

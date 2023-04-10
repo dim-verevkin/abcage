@@ -137,9 +137,32 @@ class __TwigTemplate_c9552ed010437f6c8978c93864dddf41 extends Template
         </div>
         <div class=\"col-sm-6\">
         <div class=\"row\">
-        <div class=\"col-sm-6\">
-      
+            <div class=\"col-sm-6\">
+                <table class=\"table\" id=\"order_data\">
+                    <thead>
+                        <tr>
+                            <th scope=\"col\">Название</th>
+                            <th scope=\"col\">Количество</th>
+                            <th scope=\"col\">Цена</th>
+                            <th scope=\"col\">Сумма</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
+        
+        <div class=\"input-group mb-6\" id=\"orderplace\">
+            <span class=\"input-group-text\">Номер заказа:</span>
+            <input readonly value=\"";
+        // line 59
+        echo twig_escape_filter($this->env, (isset($context["uuid"]) || array_key_exists("uuid", $context) ? $context["uuid"] : (function () { throw new RuntimeError('Variable "uuid" does not exist.', 59, $this->source); })()), "html", null, true);
+        echo "\" class=\"order_id form-control\">
+            <button class=\"btn btn-success fn_order\" type=\"submit\" data-path=\"/order/place\">Заказать</button> 
+            <button class=\"btn btn-danger fn_cancel\" type=\"button\" data-path=\"/order/cancel\">Отменить</button>
         </div>
    </div>
 </div>
@@ -164,7 +187,7 @@ class __TwigTemplate_c9552ed010437f6c8978c93864dddf41 extends Template
 
     public function getDebugInfo()
     {
-        return array (  135 => 34,  124 => 29,  117 => 25,  113 => 24,  110 => 23,  106 => 22,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  162 => 59,  135 => 34,  124 => 29,  117 => 25,  113 => 24,  110 => 23,  106 => 22,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -207,9 +230,29 @@ class __TwigTemplate_c9552ed010437f6c8978c93864dddf41 extends Template
         </div>
         <div class=\"col-sm-6\">
         <div class=\"row\">
-        <div class=\"col-sm-6\">
-      
+            <div class=\"col-sm-6\">
+                <table class=\"table\" id=\"order_data\">
+                    <thead>
+                        <tr>
+                            <th scope=\"col\">Название</th>
+                            <th scope=\"col\">Количество</th>
+                            <th scope=\"col\">Цена</th>
+                            <th scope=\"col\">Сумма</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+            </div>
         </div>
+        
+        <div class=\"input-group mb-6\" id=\"orderplace\">
+            <span class=\"input-group-text\">Номер заказа:</span>
+            <input readonly value=\"{{ uuid }}\" class=\"order_id form-control\">
+            <button class=\"btn btn-success fn_order\" type=\"submit\" data-path=\"/order/place\">Заказать</button> 
+            <button class=\"btn btn-danger fn_cancel\" type=\"button\" data-path=\"/order/cancel\">Отменить</button>
         </div>
    </div>
 </div>

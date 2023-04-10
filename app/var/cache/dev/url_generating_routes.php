@@ -17,6 +17,8 @@ return [
     '_profiler_exception' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::body'], [], [['text', '/exception'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     '_profiler_exception_css' => [['token'], ['_controller' => 'web_profiler.controller.exception_panel::stylesheet'], [], [['text', '/exception.css'], ['variable', '/', '[^/]++', 'token', true], ['text', '/_profiler']], [], [], []],
     'app_order' => [[], ['_controller' => 'App\\Controller\\OrderController::orderAction'], [], [['text', '/order']], [], [], []],
+    'app_order_place' => [[], ['_controller' => 'App\\Controller\\OrderController::orderActionPlace'], [], [['text', '/order/place']], [], [], []],
+    'app_order_cancel' => [[], ['_controller' => 'App\\Controller\\OrderController::orderActionCancel'], [], [['text', '/order/cancel']], [], [], []],
     'app_order_add' => [['id'], ['_controller' => 'App\\Controller\\OrderController::orderAddAction'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/order']], [], [], []],
     'app_stock' => [[], ['_controller' => 'App\\Controller\\StockController::stockAction'], [], [['text', '/stock']], [], [], []],
     'app_supply_add' => [[], ['_controller' => 'App\\Controller\\SupplyAddController::supplyAddAction'], [], [['text', '/supply/add']], [], [], []],

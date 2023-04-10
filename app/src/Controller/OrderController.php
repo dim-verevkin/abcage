@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Uid\Uuid;
 
 use App\Repository\StockRepository;
 use App\Service\NewOrderService;
@@ -22,7 +23,52 @@ class OrderController extends AbstractController
     
         return $this->render('neworder/index.html.twig', [
             'stock'=>$stock,
+            'uuid'=>Uuid::v1(),
         ]);       
+    }
+
+    #[Route('/order/place', name: 'app_order_place')]
+    public function orderActionPlace(Request $request, NewOrderService $orderService): Response
+    {     
+        if ($request->isXmlHttpRequest()) 
+        {  
+            $data = json_decode($request->getContent(), true);
+
+            if (!isset($data))
+            {
+                return new JsonResponse(json_last_error());
+            }
+            else
+            {
+                $orderService->placeOrder($data['uuid']);
+
+                $contents = "";
+        
+                return new JsonResponse($contents);
+            }
+        }
+    }
+
+    #[Route('/order/cancel', name: 'app_order_cancel')]
+    public function orderActionCancel(Request $request, NewOrderService $orderService): Response
+    {     
+        if ($request->isXmlHttpRequest()) 
+        {  
+            $data = json_decode($request->getContent(), true);
+
+            if (!isset($data))
+            {
+                return new JsonResponse(json_last_error());
+            }
+            else
+            {
+                $orderService->removeOrder($data['uuid']);
+
+                $contents = "";
+        
+                return new JsonResponse($contents);
+            }
+        }
     }
 
     #[Route('/order/{id}', name: 'app_order_add')]
@@ -32,23 +78,19 @@ class OrderController extends AbstractController
         {  
             $data = json_decode($request->getContent(), true);
 
-            if (!isset($data['name']))
+            if (!isset($data))
             {
                 return new JsonResponse(json_last_error());
             }
             else
             {
-                $type = $data['name']; 
-                $rsp = NULL;
-                switch($type)
-                {
-                    case "act_add":
-                        $order = $orderService->updateOrder($data['quantity'], $id);
-                        $rsp = $serializer->serialize($order,'json');
-                        break;
-                }
+                $order = $orderService->updateOrder($data['quantity'], $data['uuid'], $id);
 
-                return new JsonResponse($rsp); 
+                $contents = $this->renderView('neworder/_index.html.twig', [
+                    'order' => $order,
+                ]);
+        
+                return new JsonResponse($contents);
             }
         } else 
         {  

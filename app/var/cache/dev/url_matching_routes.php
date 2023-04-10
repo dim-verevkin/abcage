@@ -15,6 +15,8 @@ return [
         '/_profiler/xdebug' => [[['_route' => '_profiler_xdebug', '_controller' => 'web_profiler.controller.profiler::xdebugAction'], null, null, null, false, false, null]],
         '/_profiler/open' => [[['_route' => '_profiler_open_file', '_controller' => 'web_profiler.controller.profiler::openAction'], null, null, null, false, false, null]],
         '/order' => [[['_route' => 'app_order', '_controller' => 'App\\Controller\\OrderController::orderAction'], null, null, null, false, false, null]],
+        '/order/place' => [[['_route' => 'app_order_place', '_controller' => 'App\\Controller\\OrderController::orderActionPlace'], null, null, null, false, false, null]],
+        '/order/cancel' => [[['_route' => 'app_order_cancel', '_controller' => 'App\\Controller\\OrderController::orderActionCancel'], null, null, null, false, false, null]],
         '/stock' => [[['_route' => 'app_stock', '_controller' => 'App\\Controller\\StockController::stockAction'], null, null, null, false, false, null]],
         '/supply/add' => [[['_route' => 'app_supply_add', '_controller' => 'App\\Controller\\SupplyAddController::supplyAddAction'], null, null, null, false, false, null]],
         '/supply' => [[['_route' => 'app_supply', '_controller' => 'App\\Controller\\SupplyController::supplyAction'], null, null, null, false, false, null]],
