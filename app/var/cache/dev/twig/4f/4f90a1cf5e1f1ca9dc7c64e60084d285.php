@@ -65,7 +65,7 @@ class __TwigTemplate_c2339bb1b632d959467228e1e8ac9311 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Hello ShipmentController!";
+        echo "Отгрузки";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -86,27 +86,49 @@ class __TwigTemplate_c2339bb1b632d959467228e1e8ac9311 extends Template
 
         // line 6
         echo "<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+ 
 </style>
 
-<div class=\"example-wrapper\">
-    <h1>Hello ";
-        // line 12
-        echo twig_escape_filter($this->env, (isset($context["controller_name"]) || array_key_exists("controller_name", $context) ? $context["controller_name"] : (function () { throw new RuntimeError('Variable "controller_name" does not exist.', 12, $this->source); })()), "html", null, true);
-        echo "! ✅</h1>
+<div class=\"container m-5\">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href=\"";
+    <div class = \"h4\">Выберите номер поставки:</div>
+    
+    <div class=\"form-group\">
+        <select id=\"shipid\" class=\"form-control\" data-path=\"/shipment\">
+            ";
         // line 16
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\CodeExtension']->getFileLink("/home/dmitry/abcTest/app/src/Controller/ShipmentController.php", 0), "html", null, true);
-        echo "\">src/Controller/ShipmentController.php</a></code></li>
-        <li>Your template at <code><a href=\"";
-        // line 17
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\CodeExtension']->getFileLink("/home/dmitry/abcTest/app/templates/shipment/index.html.twig", 0), "html", null, true);
-        echo "\">templates/shipment/index.html.twig</a></code></li>
-    </ul>
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["shipments"]) || array_key_exists("shipments", $context) ? $context["shipments"] : (function () { throw new RuntimeError('Variable "shipments" does not exist.', 16, $this->source); })()));
+        foreach ($context['_seq'] as $context["_key"] => $context["item"]) {
+            // line 17
+            echo "                <option value=\"";
+            echo twig_escape_filter($this->env, $context["item"], "html", null, true);
+            echo "\">";
+            echo twig_escape_filter($this->env, $context["item"], "html", null, true);
+            echo "</option>
+            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['item'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 19
+        echo "        </select>
+    </div>
+
+    <table class=\"table\" id=\"ship_data\">
+        <thead>
+            <tr>
+                <th scope=\"col\">Название</th>
+                <th scope=\"col\">Количество</th>
+                <th scope=\"col\">Цена</th>
+                <th scope=\"col\">Сумма</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+   
 </div>
 ";
         
@@ -129,31 +151,47 @@ class __TwigTemplate_c2339bb1b632d959467228e1e8ac9311 extends Template
 
     public function getDebugInfo()
     {
-        return array (  107 => 17,  103 => 16,  96 => 12,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  115 => 19,  104 => 17,  100 => 16,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
 
-{% block title %}Hello ShipmentController!{% endblock %}
+{% block title %}Отгрузки{% endblock %}
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+ 
 </style>
 
-<div class=\"example-wrapper\">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class=\"container m-5\">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href=\"{{ '/home/dmitry/abcTest/app/src/Controller/ShipmentController.php'|file_link(0) }}\">src/Controller/ShipmentController.php</a></code></li>
-        <li>Your template at <code><a href=\"{{ '/home/dmitry/abcTest/app/templates/shipment/index.html.twig'|file_link(0) }}\">templates/shipment/index.html.twig</a></code></li>
-    </ul>
+    <div class = \"h4\">Выберите номер поставки:</div>
+    
+    <div class=\"form-group\">
+        <select id=\"shipid\" class=\"form-control\" data-path=\"/shipment\">
+            {% for item in shipments %}
+                <option value=\"{{ item }}\">{{ item }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <table class=\"table\" id=\"ship_data\">
+        <thead>
+            <tr>
+                <th scope=\"col\">Название</th>
+                <th scope=\"col\">Количество</th>
+                <th scope=\"col\">Цена</th>
+                <th scope=\"col\">Сумма</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+   
 </div>
-{% endblock %}
-", "shipment/index.html.twig", "/var/www/templates/shipment/index.html.twig");
+{% endblock %}", "shipment/index.html.twig", "/var/www/templates/shipment/index.html.twig");
     }
 }

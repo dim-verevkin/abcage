@@ -18,6 +18,26 @@ class NewOrderService
         $this->srp = $stockRep;
     }
 
+    public function getShipments(?string $uuid)
+    {
+        $order = $this->orp->findBy(['orderuuid'=> $uuid, 'status' => true,]);
+
+        return $order;
+    }
+
+    public function getShipmentsID()
+    {
+        $order = $this->orp->findBy(['status' => true,]);
+
+        $uuid = array(); 
+        foreach($order as $key=>$value) {
+            array_push($uuid, $value->getOrderuuid());
+        }
+
+        $uuid = array_unique($uuid);
+          return $uuid;
+    }
+
     public function updateOrder(?int $need, ?string $uuid, ?int $id)
     {
         $stock = $this->srp->findOneBy(['id' => $id]);

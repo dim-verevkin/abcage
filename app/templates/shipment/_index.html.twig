@@ -1,0 +1,8 @@
+{% for item in order %}
+    <tr>
+        <td>{{ item.product }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.cost }}</td>
+        <td>{{ item.amount }}</td>
+    </tr>
+{% endfor %}

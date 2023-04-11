@@ -6535,13 +6535,14 @@
         <argument key="supplyRepository" type="service_closure" id="App\Repository\SupplyRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.xEXkUjt" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.3SfSP2s" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\OrderController::orderAction" type="service_closure" id=".service_locator.FCwuPz2"/>
         <argument key="App\Controller\OrderController::orderActionCancel" type="service_closure" id=".service_locator.je__Vsf"/>
         <argument key="App\Controller\OrderController::orderActionPlace" type="service_closure" id=".service_locator.je__Vsf"/>
         <argument key="App\Controller\OrderController::orderAddAction" type="service_closure" id=".service_locator.gKhxn19"/>
+        <argument key="App\Controller\ShipmentController::shipmentAction" type="service_closure" id=".service_locator.je__Vsf"/>
         <argument key="App\Controller\StockController::stockAction" type="service_closure" id=".service_locator.FCwuPz2"/>
         <argument key="App\Controller\SupplyAddController::supplyAddAction" type="service_closure" id=".service_locator.IQL3rOg"/>
         <argument key="App\Controller\SupplyController::supplyAction" type="service_closure" id=".service_locator.61kLFqt"/>
@@ -6553,6 +6554,7 @@
         <argument key="App\Controller\OrderController:orderActionCancel" type="service_closure" id=".service_locator.je__Vsf"/>
         <argument key="App\Controller\OrderController:orderActionPlace" type="service_closure" id=".service_locator.je__Vsf"/>
         <argument key="App\Controller\OrderController:orderAddAction" type="service_closure" id=".service_locator.gKhxn19"/>
+        <argument key="App\Controller\ShipmentController:shipmentAction" type="service_closure" id=".service_locator.je__Vsf"/>
         <argument key="App\Controller\StockController:stockAction" type="service_closure" id=".service_locator.FCwuPz2"/>
         <argument key="App\Controller\SupplyAddController:supplyAddAction" type="service_closure" id=".service_locator.IQL3rOg"/>
         <argument key="App\Controller\SupplyController:supplyAction" type="service_closure" id=".service_locator.61kLFqt"/>
@@ -7411,12 +7413,12 @@
     <service id="debug.argument_resolver.request.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\RequestValueResolver"/>
     <service id="debug.argument_resolver.session.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\SessionValueResolver"/>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.xEXkUjt"/>
+      <argument type="service" id=".service_locator.3SfSP2s"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.xEXkUjt"/>
+      <argument type="service" id=".service_locator.3SfSP2s"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -8385,7 +8387,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.7nzbL4K" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.xEXkUjt"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.3SfSP2s"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -8406,7 +8408,7 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.o.uf2zi" alias=".service_locator.7nzbL4K"/>
-    <service id=".service_locator.tKMBvS7" alias=".service_locator.xEXkUjt"/>
+    <service id=".service_locator.kk_9DZ4" alias=".service_locator.3SfSP2s"/>
     <service id=".service_locator.9XMoc9I" alias=".service_locator.kzegaci"/>
     <service id=".service_locator.Za9MpXe" alias=".service_locator.y4dplYt"/>
     <service id=".service_locator.XW18Svm" alias=".service_locator.TcKhdzh"/>

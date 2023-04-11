@@ -155,7 +155,7 @@ class __TwigTemplate_c9552ed010437f6c8978c93864dddf41 extends Template
             </div>
         </div>
         
-        <div class=\"input-group mb-6\" id=\"orderplace\">
+        <div class=\"input-group mb-6\" id=\"orderplace\" style=\"display: none\">
             <span class=\"input-group-text\">Номер заказа:</span>
             <input readonly value=\"";
         // line 59
@@ -250,7 +250,7 @@ class __TwigTemplate_c9552ed010437f6c8978c93864dddf41 extends Template
             </div>
         </div>
         
-        <div class=\"input-group mb-6\" id=\"orderplace\">
+        <div class=\"input-group mb-6\" id=\"orderplace\" style=\"display: none\">
             <span class=\"input-group-text\">Номер заказа:</span>
             <input readonly value=\"{{ uuid }}\" class=\"order_id form-control\">
             <button class=\"btn btn-success fn_order\" type=\"submit\" data-path=\"/order/place\">Заказать</button> 

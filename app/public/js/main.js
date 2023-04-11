@@ -1,6 +1,27 @@
 $(document).ready(function(){   
     $('#orderplace').hide();
-   
+
+    $('#shipid').on('change', function () {
+        var selectVal = $("#shipid option:selected").val();
+        console.log(selectVal);
+
+        $.ajax({  
+            url:        $(this).attr("data-path"),  
+            type:       'POST',   
+            dataType:   'json',  
+            async:      true,  
+            data:       JSON.stringify({uuid: selectVal}),
+            
+            success: function(data, status) {  
+                console.log(data);
+                $('table#ship_data tbody').html(data);
+            },  
+            error : function(xhr, textStatus, errorThrown) {  
+                console.log(textStatus);
+            }  
+         });  
+   });
+  
     $('body').on('click', '.fn_add', function(event) {
         
         var num = $(this).prev().val();     

@@ -41,7 +41,6 @@ class OrderController extends AbstractController
             else
             {
                 $orderService->placeOrder($data['uuid']);
-
                 $contents = "";
         
                 return new JsonResponse($contents);
