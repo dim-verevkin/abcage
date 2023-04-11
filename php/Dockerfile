@@ -1,36 +1,19 @@
-FROM php:8.1-fpm
+FROM php:8.1-fpm-alpine
 
-# Arguments defined in docker-compose.yml
-ARG user
-ARG uid
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    unzip
+COPY --from=composer:2.3.9 /usr/bin/composer /usr/bin/composer
 
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache bash
+RUN curl -1sLf 'https://dl.cloudsmith.io/public/symfony/stable/setup.alpine.sh' | bash
+RUN apk add symfony-cli
 
-# Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd intl
+RUN mkdir -p /app && chown www-data:www-data /app
+WORKDIR /app
 
-# Get latest Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+USER www-data:www-data
 
-# Create system user to run Composer and Artisan Commands
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user
+COPY --chown=www-data:www-data ./app/composer.* ./
+RUN composer install --optimize-autoloader --no-scripts
 
-RUN chown -R $user /var/www
-
-# Set working directory
-WORKDIR /var/www
-
-USER $user:$user
+COPY --chown=www-data:www-data ./app ./
