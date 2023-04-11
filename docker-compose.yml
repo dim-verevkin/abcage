@@ -19,12 +19,12 @@ services:
   volumes:
     - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
   depends_on:
-    php:
+    - php
 
  mysql:
   env_file:
    - './app/.env'
-  image: 'mysql:8.0'
+  image: 'mysql:8.0' 
   container_name: mysql
   ports: [ '3306:3306' ]
   volumes: 
@@ -32,6 +32,8 @@ services:
     - ./mysql/abctestdb.sql:/docker-entrypoint-initdb.d/schema.sql:ro
   healthcheck:
       test:  mysql --user=abctest --password=abctest -e 'SHOW TABLES FROM abctest'
+      timeout: 20s
+      retries: 10
 
  myadmin:
   image: phpmyadmin/phpmyadmin
