@@ -86,6 +86,8 @@ class NewOrderService
                 $this->srp->save($stock, true);     
 
                 $order->setStatus(true);
+                $order->setCost(($order->getCost() / 100)*130);
+                $order->setAmount($order->getCost() * $order->getQuantity());
                 $this->orp->save($order, true);     
                 $order = $this->orp->findOneBy(['orderuuid' => $uuid, 'status' => false,]);
                 

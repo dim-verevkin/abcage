@@ -1,7 +1,8 @@
 $(document).ready(function(){   
     $('#orderplace').hide();
 
-    $('#shipid').on('change', function () {
+    $('#shipid').on('mouseup', function () {
+        console.log('Mouse UP');
         var selectVal = $("#shipid option:selected").val();
         console.log(selectVal);
 

@@ -1,6 +1,10 @@
 FROM php:8.1-fpm-alpine
 
+RUN apk add icu-dev 
+
 RUN docker-php-ext-install mysqli pdo pdo_mysql
+
+RUN docker-php-ext-configure intl && docker-php-ext-install intl
 
 COPY --from=composer:2.3.9 /usr/bin/composer /usr/bin/composer
 
